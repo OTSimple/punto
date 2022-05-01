@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_01_102548) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_01_112627) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
   create_table "cards", force: :cascade do |t|
@@ -21,4 +22,33 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_01_102548) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "games", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_at"], name: "index_games_on_created_at"
+  end
+
+  create_table "moves", force: :cascade do |t|
+    t.uuid "game_id", null: false
+    t.bigint "card_id", null: false
+    t.integer "coordinates", default: [], array: true
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["card_id"], name: "index_moves_on_card_id"
+    t.index ["coordinates"], name: "index_moves_on_coordinates", using: :gin
+    t.index ["game_id"], name: "index_moves_on_game_id"
+    t.index ["user_id"], name: "index_moves_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "pseudo"
+    t.datetime "last_move"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "moves", "cards"
+  add_foreign_key "moves", "games"
+  add_foreign_key "moves", "users"
 end
