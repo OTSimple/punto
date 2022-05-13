@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resources :games, only: :create do
+    resources :moves
     member do
       get :play
     end
