@@ -3,8 +3,11 @@
 <div class="container mx-auto h-full">
   <div class="flex h-full w-full items-center justify-center">
     <h1 class="text-3xl">
-      <%= button_to "start a new game", games_path(game: {user_pseudo: "test"}), method: :post, class: "h-10 px-6 font-semibold rounded-md border border-slate-200 text-slate-900" %>
-      <a href="http://localhost:3000/games/d25ef333-db3a-4316-9bcf-09e909dc1a56/play">Partie</a>
+      <%= button_to "Start a game as a guest",
+                    games_path(game: {user_pseudo: "test"}),
+                    method: :post,
+                    class: "py-4 px-8 font-semibold text-white rounded-md text-base bg-gradient-to-r from-cyan-500 to-blue-500 uppercase shadow-xl shadow-blue-300 hover:shadow-2xl hover:shadow-blue-400  transition-shadow"
+                    %>
     </h1>
   </div>
 </div>
