@@ -3,7 +3,7 @@
     <div class="flex">
       <% 12.times do %>
         <div class="rounded-md bg-indigo-200 w-28 m-1 flex-1 h-36">
-
+          <%= current_or_guest_user.pseudo %>
         </div>
       <% end %>
     </div>

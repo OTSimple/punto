@@ -20,5 +20,4 @@ RSpec.describe GameMaster, type: :module do
       end
     end
   end
-  
 end
