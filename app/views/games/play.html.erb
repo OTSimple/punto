@@ -13,5 +13,14 @@
 </main>
 
 <aside class="game-tool game-tool--opened">
-
+  <header class="game-tool__header">
+    PONTU
+  </header>
+  <ul class="game-tool__players-list">
+    <% @players.each do |player| %>
+      <li>
+        <%= player.user.pseudo %>
+      </li>
+    <% end %>
+  </ul>
 </aside>

@@ -10,10 +10,23 @@ RSpec.describe GameServices::Creator do
   describe "#call" do
     let!(:user) { create(:guest_user) }
 
-    it "should create a new game" do
+    it "should return a success when given a user" do
+      service = GameServices::Creator.call(user: user)
+
+      expect(service.response.success?).to be true
+    end
+
+    it "should return an error when user is blank" do
+      service = GameServices::Creator.call(user: nil)
+
+      expect(service.response.success?).to be false
+    end
+
+    it "should create a new game with 'waiting' status" do
       service = GameServices::Creator.call(user: user)
 
       expect(service.game.persisted?).to be true
+      expect(service.game.state).to eq("waiting")
     end
 
     it "should have created one player who is the owner of the game" do

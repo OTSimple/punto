@@ -9,14 +9,22 @@ class GameServices::Creator < ApplicationService
   end
 
   def call
-    puts "user = #{@user.inspect}"
-    @game = Game.new
-    @game.players.build(user: @user, owner: true)
+    @game = Game.new(state: "waiting")
+    @game.players.build(user_id: @user.id, owner: true)
     @game.short_tokens.build(token: SecureRandom.hex(2))
 
     @game.save
 
+    build_success_response
+
     self
+
+    rescue StandardError => e
+      build_failed_response(e)
+      self
+    rescue NoMethodError => e
+      build_failed_response(e)
+      self
   end
 
   private
