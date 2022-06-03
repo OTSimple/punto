@@ -46,7 +46,8 @@ gem "bootsnap", require: false
 # gem "sassc-rails"
 
 # Use Tailwind
-gem "tailwindcss-rails"
+# gem "tailwindcss-rails"
+gem "dartsass-rails"
 
 gem "devise"
 gem "devise-guests"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_13_180034) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_03_132845) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_13_180034) do
   create_table "games", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "state"
     t.index ["created_at"], name: "index_games_on_created_at"
   end
 
@@ -39,6 +40,24 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_13_180034) do
     t.index ["coordinates"], name: "index_moves_on_coordinates", using: :gin
     t.index ["game_id"], name: "index_moves_on_game_id"
     t.index ["user_id"], name: "index_moves_on_user_id"
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.uuid "game_id", null: false
+    t.bigint "user_id", null: false
+    t.boolean "owner", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_players_on_game_id"
+    t.index ["user_id"], name: "index_players_on_user_id"
+  end
+
+  create_table "short_tokens", force: :cascade do |t|
+    t.uuid "game_id", null: false
+    t.string "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_short_tokens_on_game_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -58,4 +77,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_13_180034) do
   add_foreign_key "moves", "cards"
   add_foreign_key "moves", "games"
   add_foreign_key "moves", "users"
+  add_foreign_key "players", "games"
+  add_foreign_key "players", "users"
+  add_foreign_key "short_tokens", "games"
 end

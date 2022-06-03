@@ -1,10 +1,10 @@
 class GamesController < ApplicationController
   def create
-    service = Game::Creator.call(game_params)
+    service = GameServices::Creator.call(user: current_or_guest_user)
 
     respond_to do |format|
-      if service
-        format.html { redirect_to play_game_path(service.game) }
+      if service.response.success?
+        format.html { redirect_to play_game_path(service.game.id)}
       else
       end
     end
@@ -12,11 +12,12 @@ class GamesController < ApplicationController
 
   def play
     @game = Game.find(params[:id])
+    @players = @game.players.joins(:user)
   end
 
   private
 
   def game_params
-    params.require(:game).permit(:user_pseudo)
+    params.require(:game)
   end
 end

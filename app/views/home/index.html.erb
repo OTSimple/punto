@@ -1,12 +1,12 @@
-
-
-<div class="container mx-auto h-full">
-  <div class="flex h-full w-full items-center justify-center">
-    <h1 class="text-3xl">
-      <%= button_to "Start a game as a guest",
-                    games_path(game: {user_pseudo: "test"}),
+<main class="row center-xs full-height  middle-xs">
+  <div class="game-starter col-xs-6">
+    <h1 class="game-starter__title">
+      PONTU
+    </h1>
+      <%= button_to "start a game as a guest",
+                    games_path,
                     method: :post,
-                    class: "py-4 px-8 font-semibold text-white rounded-md text-base bg-gradient-to-r from-cyan-500 to-blue-500 uppercase shadow-xl shadow-blue-300 hover:shadow-2xl hover:shadow-blue-400  transition-shadow"
+                    class: "button button--large"
                     %>
     </h1>
   </div>

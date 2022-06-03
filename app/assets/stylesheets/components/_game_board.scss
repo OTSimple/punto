@@ -1,0 +1,27 @@
+.game-board {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  transition: transform .1s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    cursor: move;
+    position: absolute;
+  }
+
+  &__slot-row {
+    display: flex;
+  }
+
+  &__slot {
+    background-color: var(--color-darker-blue);
+    border-radius: var(--radius-medium);
+    padding: 2rem;
+    margin: 2px;
+    width: calc(100vh / 12);
+    height: calc(100vh / 12 - (22 * 2px));
+  }
+}

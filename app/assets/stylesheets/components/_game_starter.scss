@@ -1,0 +1,20 @@
+.game-starter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--color-darker-blue);
+  background-color: var(--color-white);
+  border-radius: var(--radius-medium);
+  flex-direction: column;
+
+  padding: 2rem;
+
+  &__title {
+    font-size: 2rem;
+    letter-spacing: 4px;
+    color: var(--color-dark-blue);
+    margin: 0 auto 1rem auto;
+    line-height: 2rem;
+    text-shadow: 2px 2px var(--color-light-blue);
+  }
+}
