@@ -1,0 +1,13 @@
+@use 'abstracts/variables';
+@use 'abstracts/fonts';
+
+@use 'base/_base.scss';
+@use 'base/_utils.scss';
+
+@use 'vendors/normalize.css';
+@use 'vendors/flexboxgrid.css';
+
+@use 'components/button';
+@use 'components/game_board';
+@use 'components/game_starter';
+@use 'components/game_tool';

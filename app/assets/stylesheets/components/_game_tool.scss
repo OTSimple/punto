@@ -1,0 +1,14 @@
+.game-tool {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+
+  &--opened {
+    width: 220px;
+    height: 250px;
+
+    background-color: var(--color-pink);
+    border-radius:  var(--radius-medium);
+    border: 2px solid var(--color-darker-blue);
+  }
+}

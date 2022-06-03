@@ -1,11 +1,17 @@
-<main class="fixed top-0 left-0 w-full h-full bg-indigo-100 p-5">
-  <% 12.times do %>
-    <div class="flex">
-      <% 12.times do %>
-        <div class="rounded-md bg-indigo-200 w-28 m-1 flex-1 h-36">
-          <%= current_or_guest_user.pseudo %>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
+<main class="game-board" data-controller="game-board">
+  <div class="game-board__content" data-game-board-target="content" data-action="mousedown->game-board#followMouse mouseup->game-board#unfollowMouse">
+    <% 10.times do %>
+      <div class="game-board__slot-row">
+        <% 10.times do %>
+          <div class="game-board__slot">
+            <%= current_or_guest_user.pseudo %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </main>
+
+<aside class="game-tool game-tool--opened">
+
+</aside>

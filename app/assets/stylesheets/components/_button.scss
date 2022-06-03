@@ -1,0 +1,20 @@
+.button {
+  background-color: var(--color-pink);
+  border: 2px solid var(--color-darker-blue);
+  color: var(--color-dark-blue);
+  font-weight:bold;
+  border-radius: var(--radius-small);
+  cursor: pointer;
+  font-variant: small-caps;
+  box-shadow: 2px 2px 0px 1px var(--color-darker-blue);
+  transition: transform .05s cubic-bezier(0.47, 0, 0.745, 0.715), box-shadow .05s cubic-bezier(0.47, 0, 0.745, 0.715);
+  
+  &--large {
+    padding: 1rem 2rem;
+  }
+
+  &:hover {
+    box-shadow: 0px 1px 0px 0px var(--color-darker-blue);
+    transform: translate(2px, 2px);
+  }
+}
